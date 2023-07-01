@@ -4,7 +4,7 @@
 
 ### Project Features :
 
-1. Adding items to List via form
+1.Adding items to List via form
 
 2.remove item from list by clicking (x) button
 
