@@ -22,31 +22,31 @@ function onAddItemSubmit(e) {
   const itemValue = itemInput.value;
 
   // Validate Input
-  if (itemValue === '') {
+  if (newItem === '') {
     alert('Please add an item');
     return;
   }
 
   // Check for edit mode
   if (isEditMode) {
-    const itemToEdit = itemsList.querySelector('.edit-mode');
+    const itemToEdit = itemList.querySelector('.edit-mode');
 
     removeItemFromStorage(itemToEdit.textContent);
     itemToEdit.classList.remove('edit-mode');
     itemToEdit.remove();
     isEditMode = false;
   } else {
-    if (checkIfItemExists(itemValue)) {
+    if (checkIfItemExists(newItem)) {
       alert('That item already exists!');
       return;
     }
   }
 
   // Create item DOM element
-  addItemToDOM(itemValue);
+  addItemToDOM(newItem);
 
   // Add item to local storage
-  addItemToStorage(itemValue);
+  addItemToStorage(ite);
 
   checkUI();
 

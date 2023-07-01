@@ -2,7 +2,7 @@ const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const formBtn = itemForm.querySelector('button');
 const itemFilter = document.querySelector('#filter');
-const itemsList = document.querySelector('#item-list');
+const itemList = document.querySelector('#item-list');
 const clearBtn = document.querySelector('#clear');
 let isEditMode = false;
 
@@ -29,7 +29,7 @@ function onAddItemSubmit(e) {
 
   // Check for edit mode
   if (isEditMode) {
-    const itemToEdit = itemsList.querySelector('.edit-mode');
+    const itemToEdit = itemList.querySelector('.edit-mode');
 
     removeItemFromStorage(itemToEdit.textContent);
     itemToEdit.classList.remove('edit-mode');

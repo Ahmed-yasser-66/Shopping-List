@@ -21,32 +21,31 @@ function onAddItemSubmit(e) {
 
   const itemValue = itemInput.value;
 
-  // Validate Input
   if (itemValue === '') {
-    alert('Please add an item');
+    itemInput.style.border = '2px solid red';
     return;
+  } else {
+    itemInput.style.border = '1px solid #ccc';
   }
 
-  // Check for edit mode
   if (isEditMode) {
-    const itemToEdit = itemsList.querySelector('.edit-mode');
+    itemToEdit = document.querySelector('li');
 
     removeItemFromStorage(itemToEdit.textContent);
+
     itemToEdit.classList.remove('edit-mode');
     itemToEdit.remove();
+
     isEditMode = false;
-  } else {
-    if (checkIfItemExists(itemValue)) {
-      alert('That item already exists!');
-      return;
-    }
   }
 
-  // Create item DOM element
+  //create an item in the DOM
   addItemToDOM(itemValue);
 
-  // Add item to local storage
+  //add item to the local storage
   addItemToStorage(itemValue);
+
+  checkIfItemExists(itemValue);
 
   checkUI();
 
@@ -108,7 +107,11 @@ function onClickItem(e) {
 function checkIfItemExists(item) {
   let itemsFromStorage = getItemsFromStorage();
 
-  return itemsFromStorage.includes(item);
+  if (itemsFromStorage.includes(item.textContent)) {
+    console.log('includes');
+  } else {
+    console.log('dont include');
+  }
 }
 
 function setToEditMode(item) {

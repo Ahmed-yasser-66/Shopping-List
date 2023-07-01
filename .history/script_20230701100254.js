@@ -21,31 +21,17 @@ function onAddItemSubmit(e) {
 
   const itemValue = itemInput.value;
 
-  // Validate Input
   if (itemValue === '') {
-    alert('Please add an item');
+    itemInput.style.border = '2px solid red';
     return;
-  }
-
-  // Check for edit mode
-  if (isEditMode) {
-    const itemToEdit = itemsList.querySelector('.edit-mode');
-
-    removeItemFromStorage(itemToEdit.textContent);
-    itemToEdit.classList.remove('edit-mode');
-    itemToEdit.remove();
-    isEditMode = false;
   } else {
-    if (checkIfItemExists(itemValue)) {
-      alert('That item already exists!');
-      return;
-    }
+    itemInput.style.border = '1px solid #ccc';
   }
 
-  // Create item DOM element
+  //create an item in the DOM
   addItemToDOM(itemValue);
 
-  // Add item to local storage
+  //add item to the local storage
   addItemToStorage(itemValue);
 
   checkUI();
@@ -103,26 +89,6 @@ function onClickItem(e) {
   } else {
     setToEditMode(e.target);
   }
-}
-
-function checkIfItemExists(item) {
-  let itemsFromStorage = getItemsFromStorage();
-
-  return itemsFromStorage.includes(item);
-}
-
-function setToEditMode(item) {
-  isEditMode = true;
-
-  document.querySelectorAll('li').forEach((i) => {
-    i.classList.remove('edit-mode');
-  });
-
-  item.classList.add('edit-mode');
-
-  formBtn.innerHTML = `<i class="fa-solid fa-pen"></i> Edit Item`;
-  formBtn.style.backgroundColor = '#228B2F';
-  itemInput.value = item.textContent;
 }
 
 function removeItem(item) {
